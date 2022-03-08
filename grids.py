@@ -22,6 +22,16 @@ class Grids():
         [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0],
         [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0],
         [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0]])
+        row = 12
+        col = 6
+        sizeOb = 3
+        for x in range(row-1, row+(sizeOb-1)):
+            for y in range(col-1, col+(sizeOb-1)):
+                if x < len(grid):
+                    grid[x][y] = 1
+        #for y in range(col-1, col+(sizeOb-1)):
+            #if y < len(grid):
+                #grid[row][y] = 1
         return grid
 
     def inputGrid(self):
@@ -31,21 +41,16 @@ class Grids():
         return grid1
 
     def placeObstacle(self, row, col, grid):
-        sizeOb = randint(1,3)
-        r = row;
-        c = col;
-        for (int r = row; r < row + size0b; r++) {
-            for(int c = col; c < col + size0b; r++) {
-                grid[r][c] = 1
-            }
-        }
-        for x in range(sizeOb*2):
-            grid[r][c] = 1
-            r = row+1
+        sizeOb = randint(1, 2)
+        print(sizeOb)
+        for x in range(row - 1, row + (sizeOb - 1)):
+            for y in range(col - 1, col + (sizeOb - 1)):
+                if x < len(grid) and y < len(grid):
+                    grid[x][y] = 1
 
 
     def randomGrid(self):
-        size = randint(0, 20)
+        size = randint(5, 20)
         self.grid = np.zeros((size, size))
         obstacles = (2*size/5)
         numObstacles = randint(1, int(obstacles))
@@ -53,9 +58,7 @@ class Grids():
         for x in range(numObstacles):
             col = randint(0,size)
             row = randint(0, size)
-            placeObstacles(row, col, self.grid)
-
-
+            self.placeObstacle(row, col, self.grid)
         return self.grid
 
 g = Grids()
