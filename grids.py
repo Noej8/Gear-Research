@@ -32,8 +32,13 @@ class Grids():
 
     def placeObstacle(self, row, col, grid):
         sizeOb = randint(1,3)
-        r = row
-        c = col
+        r = row;
+        c = col;
+        for (int r = row; r < row + size0b; r++) {
+            for(int c = col; c < col + size0b; r++) {
+                grid[r][c] = 1
+            }
+        }
         for x in range(sizeOb*2):
             grid[r][c] = 1
             r = row+1
