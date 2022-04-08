@@ -41,12 +41,12 @@ class Grids():
         return grid1
 
     def placeObstacle(self, row, col, grid):
-        sizeOb = randint(1, 2)
-        print(sizeOb)
-        for x in range(row - 1, row + (sizeOb - 1)):
-            for y in range(col - 1, col + (sizeOb - 1)):
-                if x < len(grid) and y < len(grid):
-                    grid[x][y] = 1
+        sizeOb = randint(10, 40)
+        row_min = row - 1
+        row_max = min(len(grid), row + sizeOb - 1)
+        col_min = col - 1
+        col_max = min(len(grid), col + sizeOb - 1)
+        grid[row_min:row_max, col_min:col_max] = np.array([128, 0, 128])
 
 
     def randomGrid(self):
