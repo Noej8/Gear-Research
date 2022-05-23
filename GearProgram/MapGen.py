@@ -81,7 +81,7 @@ class Grids():
         x, y = current
         for nx, ny in [[x, y+1], [x, y-1], [x+1, y], [x-1, y], [x-1, y+1], [x+1, y-1], [x+1, y+1], [x-1, y-1]]:
             if self.isInRange(nx, ny) and self.unBlocked(nx, ny):
-                neighbors.append([(nx, ny), 1])
+                neighbors.append([(nx, ny), ((nx - x) ** 2 + (ny - y) ** 2) ** 0.5])
         return neighbors
 
     def isInRange(self, row, col):

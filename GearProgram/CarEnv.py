@@ -36,7 +36,7 @@ car = p.loadURDF('simplecar.urdf', basePosition=[x1, y1, 0.1])
 wheel_indices = [1, 3, 4, 5]
 hinge_indices = [0, 2]
 v = PID(200, .1, 300)
-h = HingePID(1, 0, 0)
+h = HingePID(.25, .01, 0)
 goal = [planeSize-1, planeSize-1]
 path = astar.path
 tfinal = 500

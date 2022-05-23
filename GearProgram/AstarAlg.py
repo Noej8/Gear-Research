@@ -27,7 +27,7 @@ class Algorithm:
         return self.path
 
     def astar(self, grid, start, goal):
-        epsilon = 1
+        epsilon = 1  # when epsilon = 0, it is A*, the path is optimal when epsilon > 0, it is epsilon-A*
         closedList = set()
         openList = [(0, start)]
         heapq.heapify(openList)
@@ -41,9 +41,12 @@ class Algorithm:
         while openList:
             p, curnode = heapq.heappop(openList)
 
-            self.map[curnode[0], curnode[1], 2] = 1.
+            self.map[curnode[0], curnode[1], 0] = 1.
+            self.map[curnode[0], curnode[1], 1] = .5
             if cnt % 10 == 0:
                 plt.imshow(self.map)
+                plt.axis('off')
+                plt.tight_layout()
                 plt.savefig(f'./img/{img_idx}.png')
                 img_idx += 1
                 plt.pause(.00001)
@@ -57,7 +60,8 @@ class Algorithm:
                         dist[n] = dist[curnode] + cost
                         heapq.heappush(openList, (dist[n] + epsilon * self.hValue(n, goal), n))
                         parent[n] = curnode
-            cnt+=1
+                        self.map[n[0], n[1], 1] = 1.
+            cnt += 1
 
         path = self.createPath(parent, curnode, grid)
         solution = grid
